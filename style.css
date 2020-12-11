@@ -1199,14 +1199,13 @@ footer .column-footer-2 a:hover{
   }
 }
 @media (max-width: 550px){
+  .parallax{
+    min-height: 850px;
+  }
   .parallax {
     background-image: url("image/error_1.jpg");
     margin: 0;
     min-height: 850px;
-    background-attachment: fixed;
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
   .row_5{
     padding: 0 3vw;
