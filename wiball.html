@@ -1,0 +1,418 @@
+<!--------------------------- table of contents 1. cart modal 2. navigation bar - navbar 1 (desktop) - navbar 2 (mobile) 3. section-1 (cover image) 4. section-2 (paragraph) 5. section-3 (feautured offers) 6. section-4 (2 column kyrie) 7. section-5 (swiper.js/slider) 8. section-6 (2 column card image) 9. section-7 (get rise text) 10. section-8 (4 column list) 11. accordion mobile 12. footer Important Note: some of images is grab on internet and may subject to copyright all rights to the said images belongs to them ----------------------------> <!DOCTYPE html> <html lang="en" dir="ltr"> <head> <title>Wiball | home</title> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <!---links for font-style, fontawesome icons, and jquery--> <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'> <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet"> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!--swiper.js--> <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css"> <script src="https://unpkg.com/swiper/swiper-bundle.js"></script> <style type="text/css"> /**style for all components**/ *{font-family: 'Poppins', sans-serif; margin: 0; padding: 0; user-select: none; box-sizing: border-box; } /**sticky class lets the navbar sticky**/ .sticky {position: fixed; z-index: 99; top: 0; width: 100%; } /**style for overlay-side, triggers when hamburger menu isclicked see in js file**/ #overlay-side{position: fixed; display: none; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; z-index: 10; } /**centerin navbar**/ .navbar-brand-centered img{top: .8vw; position: absolute; left: 50%; z-index: .5; width: 14.5vw; background-color: transparent; } .nav_one .navbar-brand-centered img, .nav_two .navbar-brand-centered img {margin-left: -7.2vw; } /**style for cart icon**/ .ph li{margin-right: 4vw; margin-top: -2.2vw; color: #424949; font-size: 1.3vw; float: right; list-style-type: none; cursor: pointer; -webkit-transition: 0.3s; transition: 0.3s; } .ph li:hover{filter: opacity(70%); -webkit-transition: 0.3s; transition: 0.3s; } /**styles for badge in nav cart icon**/ .ph li p{font-size: 1vw; padding: .01vw .4vw; color: #ffffff; background-color: red; border-radius: 50%; position: absolute; margin-left: .8vw; margin-top: -2.5vw; } /*******************modal*/ /**empty modal text occurs when cart is empty**/ .empty-modal{text-align: center; padding: 35px 40px; } .empty-modal h3{font-size: 35px; font-weight: lighter; } .empty-modal h4{font-size: 18px; font-weight: lighter; } /**this is the style of the badge in the header of the modal**/ .modal-header span{font-size: 12px; padding: 1px 6px; color: #ffffff; background-color: red; border-radius: 50%; position: absolute; margin-left: -10px; margin-top: -6px; } /**styles for cart items**/ .column-cart {float: left; width: 100%; display: flex; padding: 12px 12px; border-radius: .5vw; border: .1vw solid rgba(151,154,154,0.1); margin-bottom: 12px; -webkit-transition: 0.3s; transition: 0.3s; } .column-cart:hover{box-shadow: 1px 12px 20px rgba(0, 0, 0, 0.2); margin-top: -1px; -webkit-transition: 0.3s; transition: 0.3s; } .column-cart img{width: 90px; } .column-cart h3{margin-top: 15px; font-size: 24px; margin-left: 20px; font-weight: lighter; } .column-cart span{font-size: 18px; color: grey; } .column-cart .fas{color: red; padding: 35px 20px; position: absolute; right: 35px; font-size: 18px; cursor: pointer; filter: opacity(40%); -webkit-transition: 0.3s; transition: 0.3s; } .column-cart .fas:hover{filter: opacity(100%); -webkit-transition: 0.3s; transition: 0.3s; } /**total price styles**/ .total h4{margin-top: 10px; float: left; font-size: 20px; color: #3498DB; font-weight: lighter; } .total .small{color: #3498DB; font-size: 15px; } /**modal content p styles**/
+.modal-content p{font-size: 13px; margin-top: -20px; position: relative; } /**modal footer styles**/ .modal-footer .btn{-webkit-transition: 0.3s; transition: 0.3s; display: none; float: right; } .modal-footer .btn:hover{-webkit-transition: 0.3s; transition: 0.3s; } /**declaring css variable transition of modal**/ :root {--modal-duration: 1s; } /**modal background styles**/ .modal {overflow: hidden; display: none; position: fixed; z-index: 200; left: 0; top: 0; height: 100%; width: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.5); } /**modal content styles including body, header and footer**/ .modal-content {overflow: auto; background-color: #fff; width: 45%; position: absolute; padding-bottom: 5px; top: 20%; left: 28%; transform: translate(-50%, -50%); transform: translateY(-22vw); margin: 15% auto; box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17); animation-name: modalopen; animation-duration: var(--modal-duration); } .modal-body {padding: 15px 15px; padding-bottom: 5px; } .modal-header {padding: 15px 15px; } .modal-header h2{font-weight: lighter; font-size: 20px; } .line {border-bottom: 1px solid #E5E7E9; } .modal-footer a {float: right; padding: 5px 10px; background-color: #3498DB; color: #fff; text-decoration: none; border-radius: 4px; display: none; -webkit-transition: 0.3s; transition: 0.3s; } .modal-footer a:hover {-webkit-transition: 0.3s; transition: 0.3s; } .modal-footer {padding-top: 15px; padding-bottom: 70px; margin: 0 20px; } .lower-footer {margin-top: 40px; } /**close button styles in modal**/ .close {text-decoration: none; float: right; font-size: 25px; margin-top: -.5vw; } .close:hover, .close:focus {color: #000; text-decoration: none; cursor: pointer; } /**modal open transition**/ @keyframes modalopen {from {opacity: 0; } to {opacity: 1; } } /************************/
+/**mobile navbar logo centered**/ .nav_two .navbar-brand-centered img {margin-top: 5px; } /**filter blured of navbar**/ body:not(.nav_one) .nav_one {background-color: rgba(255, 255, 255 ,.5)!important; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); } /**nabar_1 desktop) styles**/ .nav_one {padding-bottom: .8vw; } .nav_one .fa-barcode{color: #000000; margin-top: .5vw; margin-left: 4vw; font-size: 3vw; } .downbar{margin: 0 28.5%; position: relative; } .downbar ul{display: flex; list-style: none; } .downbar ul li a{text-decoration: none; margin: 0 2vw; padding: .5vw 0vw; padding-bottom: .7vw; font-size: 1.2vw; color: #515A5A; -webkit-transition: 0.3s; transition: 0.3s; } .downbar ul li a:hover{color: blue; -webkit-transition: 0.3s; transition: 0.3s; } /**navbar_2 (mobile) styles**/ .nav_two{padding-bottom: 10px; display: none; } /**hamburger button**/ .btnn{position: absolute; top: 8px; left: 45px; height: 45px; width: 45px; text-align: center; z-index: 1; cursor: pointer; transition: left 0.4s ease; } .btnn.click{left: 260px; } .btnn span{color: white; font-size: 28px; line-height: 45px; color: #424949; } .btnn.click span:before{content: '\f00d'; } .sidebar{position: fixed; width: 250px; height: 100%; left: -250px; background: #1b1b1b; transition: left 0.4s ease; z-index: 1; } /**sidebar nav filter blur**/ body:not(.sidebar) .sidebar {background-color: rgba(255, 255, 255 ,.5)!important; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); } /**sidebar initial style**/ .sidebar.show{left: 0px; } .sidebar .text{color: #000000; font-size: 25px; line-height: 65px; text-align: center; letter-spacing: 1px; } /**sidebar list styles**/ .sidebar ul{height: 100%; width: 100%; list-style: none; } .sidebar ul li{line-height: 60px; border-top: 1px solid rgba(66, 73, 73 ,0.1); } .sidebar ul li:last-child{border-bottom: 1px solid rgba(66, 73, 73 ,0.05); } .sidebar ul li a{position: relative; color: #000000; text-decoration: none; font-size: 18px; padding-left: 40px; font-weight: 500; display: block; width: 100%; border-left: 8px solid transparent; } .sidebar ul li.active a{color: blue; border-left-color: red; } .sidebar ul li a:hover{color: blue; -webkit-transition: 0.3s; transition: 0.3s; } /*-----sec_1--------*/ /**image cover w/ parallax effects**/ .parallax {background-image: url("image/error.jpg"); margin: 0; min-height: 50vw; background-attachment: fixed; background-position: right; background-repeat: no-repeat; background-size: cover; } /**side text in cover image**/ .slogan{position: absolute; top: 8vw; left: 10vw; } .slogan h1{font-size: 12vw; font-weight: bolder; color: #000000; font-family: helvetica; } .slogan a, .sec_2 a, .get_btn a {font-size: 1.3vw; padding: 1vw 2vw; background-color: transparent; color: #000000; border: .1vw solid #000000; line-height: 5vw; border-radius: 7vw; -webkit-transition: 0.3s; transition: 0.3s; cursor: pointer; } .slogan a:hover, .sec_2 a:hover, .get_btn a:hover {background-color: #000000; color: #ffffff; -webkit-transition: 0.3s; transition: 0.3s; } /*---------sec_2--------*/ /**a paragraph and a button**/ .sec_2{text-align: center; margin-top: 7vw; } .sec_2 h1{font-weight: bolder; line-height: 4.5vw; font-size: 4.3vw; color: #000000; } @supports (-webkit-text-stroke: .2vw black) {.sec_2 h1 {-webkit-text-stroke: .2vw #000000; -webkit-text-fill-color: #000000; } .sec_2 p{margin: 0 19vw; font-size: 1.4vw; color: #000000; margin-top: 1vw; } .sec_2 a{line-height: 10vw; } /*-----------sec_3----------------*/
+/**2 column image styles**/ .sec_3{margin-top: 7vw; } .sec_3 h1, .sec_5 h1 {font-size: 2vw; border-left: .5vw solid red; padding-left: 1vw; margin-left: 5vw; font-weight: lighter; } .row_3{box-sizing: border-box; margin-top: 2vw; padding: 0 5vw; } .contain{position: relative; text-align: center; } .NO-item-1, .NO-item-2{position: absolute; top: 16px; right: -8px; background-color: blue; color: #ffffff; padding: .7vw 1vw; font-size: 1.3vw; -webkit-transition: 0.3s; transition: 0.3s; cursor: pointer; } .column_3{float: left; padding: 1vw; -webkit-transition: 0.3s; transition: 0.3s; } .feature_1, .feature_2{width: 50%; } .feature_3{width: 100%; } .column_3 h4{font-size: 1.6vw; line-height: 3vw; font-weight: lighter; } .column_3 p{font-size: 1.1vw; line-height: .3vw; } .column_3 img{-webkit-transition: 0.3s; transition: 0.3s; cursor: pointer; } /**creating a columns for divs**/ /**combining it so less repetition**/ .row_3:after, .row_4:after, .row_5:after, .card_5:after, .row-cart:after, .row_6:after, .row_8:after {content: ""; display: table; clear: both; } /*-----------sec_4------------*/ /**kyrie and text styles**/ .row_4{box-sizing: border-box; margin-top: 10vw; } .column_4 {float: left; } .two_4{width: 47%; } .two_4 img{width: 32vw; height: 40vw; } .one_4{width: 53%; padding-left: 17vw; padding-top: 5vw; } .one_4 h1, .one_4 h2 {font-style: oblique; color: #000000; font-weight: bolder; font-family: 'helvetica'; font-size: 5vw; letter-spacing: .5vw; } .one_4 h2 {font-style: normal; margin-top: -.5vw; font-size: 4vw; letter-spacing: 0; } .one_4 p{font-size: 1.5vw; margin-top: 1.5vw; color: #000000; } .one_4 a{background-color: #C9082A; color: #ffffff; border: none; line-height: 10vw; font-size: 1.3vw; padding: 1vw 2vw; border-radius: 7vw; -webkit-transition: 0.3s; transition: 0.3s; } .one_4 a:hover{color: #ffffff; opacity: 80%; -webkit-transition: 0.3s; transition: 0.3s; } /**adding boldness to the text**/
+@supports (-webkit-text-stroke: .2vw blue) {.one_4 h1 {-webkit-text-stroke: .4vw #17408b; -webkit-text-fill-color: #17408b; } /*-----------sec_5-----------------*/ /**product card styles in swiper**/ .sec_5 h1{margin-top: 6vw; font-weight: lighter; } .row_5{margin-top: 3vw; padding: 0 3vw; } .column_5, .card_cont_5 {float: left; width: 100%; } .fa-star{color: #F4D03F; } .card_cont_5 {width: 100%; } .image_padding{padding: 0 10vw; } .margin_cont{margin-top: 2vw; } .card_one_padding{padding: 0 2vw; } /**card with white bg**/ .card_1_5{position: relative; background-color: #ffffff; box-shadow: 1px 12px 20px rgba(0, 0, 0, 0.2); padding-left: 1vw; padding-right: 1vw; line-height: 3.2vw; } .card_1_5 h1{font-size: 2.2vw; font-weight: lighter; margin-top: .6vw; } .card_1_5 p{font-size: 1.2vw; margin-top: -.3vw; } .row_5 .card_1_5 .price{padding-top: .5vw; } .type{color: #424949; font-size: 1.4vw; } .line_5{border-bottom: .1vw solid rgba(0, 0, 0, 0.1); } /**card with gradient bg**/ .card_two_padding{padding: 0 1vw; } .card_2_5{height: 13vw; margin-top: -9vw; padding-top: 10vw; color: #ffffff; background: linear-gradient(360deg,#33ccff,#5DADE2); box-shadow: 1px 12px 20px rgba(0, 0, 0, 0.2); text-align: center; margin-bottom: 8vw; } .card_2_5 p{font-size: 1.1vw; } .get_btn{margin-top: 2.3vw; } /**hide swiper controls in desktop**/ .swiper-container .swiper-button-next, .swiper-container .swiper-button-prev {display: none; } /*------------sec_6-------------*/ /**2 column image UI**/ .row_6 {padding: 0 3vw; } .column_6 {box-sizing: border-box; float: left; width: 50%; padding: .7vw; } /**button and text in bottom of image style**/ .down-down{margin-top: -1.5vw; padding: 0 1vw; } .down-down a{font-size: 1.1vw; padding: 1vw 1.5vw; border-radius: 7vw; position: relative; top: -3vw; color: #000000; background-color: #ffffff; cursor: pointer; -webkit-transition: 0.3s; transition: 0.3s; } .down-down a:hover{opacity: 90%; -webkit-transition: 0.3s; transition: 0.3s; } .down-down p{padding: 0 1vw; font-size: 1.1vw; line-height: 1.5vw; } /*--------sec_7-----------*/ /**rise text styles**/ .rise{text-align: center; margin-top: 7vw; } .rise h1{font-size: 6vw; font-weight: bolder; color: #000000; margin-bottom: 1.5vw; } .rise a{font-size: 1.3vw; padding: 1vw 2vw; border-radius: 7vw; background-color: #000000; line-height: 5vw; cursor: pointer; -webkit-transition: 0.3s; transition: 0.3s; } .rise a:hover{opacity: 80%; -webkit-transition: 0.3s; transition: 0.3s; } /**adding extra boldness to text**/ @supports (-webkit-text-stroke: .3vw black) {.rise h1 {-webkit-text-stroke: .3vw #000000; -webkit-text-fill-color: #000000; } /*-----------------sec_8------------*/
+/**style for 4 column list**/ .column_8 {float: left; width: 25%; } .column_8 p{font-size: 1.3vw; color: #000000; } .column_8 a{font-size: 1.2vw; display: flex; line-height: 2.5vw; color: grey; } .column_8 a:hover{color: #000000; } .cover_8 {width: 70%; margin-left: 20%; margin-top: 3vw; } .body_1, .body_2, .body_3{margin-top: -1.9vw; } /*----accordion-mobile*/ /**styles for accordion mobile**/ .accordion-mobile{display: none; } .accordion {background-color: #eee; color: #444; cursor: pointer; padding: 18px; width: 100%; border: none; text-align: left; outline: none; font-size: 15px; transition: 0.4s; } .activated, .accordion:hover {background-color: #ccc; } /**style when accordion is is closed**/ .accordion:after {content: '\002B'; color: #777; font-weight: bold; float: right; margin-left: 5px; } /**style when accordion is opened**/ .activated:after {content: "\2212"; } .panel_acc {padding: 0 18px; background-color: white; max-height: 0; overflow: hidden; transition: max-height 0.2s ease-out; } .panel_acc a{font-size: 15px; display: flex; line-height: 35px; color: grey; } .panel_acc a:hover{color: #000000; } /*******************footer***************/ /**2 column footer styles**/ footer{margin-top: 1vw; background-color: #000; color: #ECF0F1; padding: 0 3vw; padding-top: 3vw; } .row-footer:after, .row-footer-2:after {content: ""; display: table; clear: both; } /**both 2 columns has 50% width**/ .column-footer, .column-footer-2 {float: left; width: 50%; } footer .column-footer h3{font-size: 1.5vw; } footer .column-footer p, footer .column-footer-2 p{margin-top: 1vw; color: grey; font-size: 1.1vw; } footer .in-touch h4{float: right; } footer .fab{font-size: 2.3vw; cursor: pointer; color: grey; margin-right: .5vw; } footer .txt{font-size: 1.5vw; color: #ECF0F1; } footer .row-footer-2{border-top: .1vw solid rgb(236, 240, 241, .1); margin-top: 2.5vw; padding-top: 1vw; padding-bottom: 1vw; } footer .column-footer-2 a{float: right; text-decoration: none; color: grey; font-size: 1.1vw; margin-right: 1vw; } footer .column-footer-2 a:nth-child(1){margin-right: 0; } footer .fab:hover, footer .column-footer-2 a:hover{color: #ECF0F1; } /************MEDIA QUERIES************/
+/**use for responsiveness of the website -- convert vw unit to px -- adjust widt of components -- hide other components -- show other components vw unit (view width) its uses for large device fitting in its view width size, may vary in reference to width of device px unit (pixel) use for small devices px unit is not affected by width or height of the device screen.**/ @media (max-width: 1200px){.modal-content {width: 50%; left: 25%; } /**hide desktop nav and chage to mobile vav**/ .nav_one{display: none; } .nav_two{display: block; } .navbar-brand-centered img{top: 8px; width: 200px; } .nav_two .navbar-brand-centered img {margin-left: -98px; } .ph li{margin-right: 50px; margin-top: 20px; font-size: 16.5px; } .ph li p{font-size: 12px; padding: .3px 5px; margin-left: 10px; margin-top: -32px; } .card_1_5{line-height: 35px; } .card_2_5{margin-bottom: 100px; } .cover_8 {margin-left: 20%; } } @media (max-width: 1000px){.modal-content {width: 55%; left: 22.5%; } .slogan h1{font-size: 120px; } .slogan a{font-size: 17px; padding: 10px 20px; border: 1px solid #000000; } .sec_2 h1{font-size: 38px; } .sec_2 p{margin: 0 170px; font-size: 17px; margin-top: 10px; } .sec_2 a{font-size: 17px; padding: 10px 20px; line-height: 100px; } .row_3{padding: 0 3vw; } .sec_3 h1{font-size: 24px; border-left: 5px solid red; } .column_3 h4{font-size: 21px; line-height: 30px; } .column_3 p{font-size: 14px; line-height: 25px; } .NO-item-1, .NO-item-2{padding: 8px 11px; font-size: 15px; } .row_4{margin-top: 60px; } .one_4 h1 {font-size: 52px; letter-spacing: 1px; } .one_4 h2 {font-size: 42px; } .one_4 p{font-size: 18px; } .one_4 a{font-size: 17px; padding: 10px 20px; line-height: 130px; } @supports (-webkit-text-stroke: 2px ) {.one_4 h1 {-webkit-text-stroke: 2px #17408b; -webkit-text-fill-color: #17408b; } .sec_5 h1{font-size: 24px; border-left: 5px solid red; } .row_5{padding: 0 15vw; } .image_padding{padding: 0 80px; } .card_1_5{padding-left: 10px; padding-right: 10px; line-height: 35px; } .card_1_5 h1{font-size: 25px; } .card_1_5 p{font-size: 15px; } .type{font-size: 17px; } .card_2_5{height: 135px; padding-top: 100px; margin-top: -85px; } .card_2_5 p{font-size: 14px; line-height: 20px; } .get_btn a, .rise a{font-size: 17px; padding: 10px 20px; line-height: 80px; } .row_5 .card_1_5 .price{padding-top: 5px; } .row_6 {padding: 0 3vw; } .down-down{margin-top: -18px; padding: 0 12px; margin-bottom: 13px; } .down-down a{font-size: 13px; padding: 10px 15px; top: -30px; } .down-down p{font-size: 13px; line-height: 18px; } .rise h1{font-size: 60px; margin: 3vw; } @supports (-webkit-text-stroke: 3px black) {.rise h1 {-webkit-text-stroke: 3px #000000; } .rise a{line-height: 20px; } .column_8 p{font-size: 15px; } .column_8 a{font-size: 15px; line-height: 30px; } .cover_8 {width: 80%; margin-left: 15.5%; margin-top: 30px; } .body_1, .body_2, .body_3{margin-top: -22px; } footer{margin-top: 13px; padding: 0 33px; padding-top: 33px; } footer .column-footer h3{font-size: 18px; } .column-footer{width: 0%; } .about-f{width: 60%; } .in-touch{width: 40%; } footer .column-footer p,
+  footer .column-footer-2 p{font-size: 13px; } footer .fab{font-size: 26px; margin-right: 8px; } footer .txt{font-size: 18px; } footer .row-footer-2{border-top: 1px solid rgb(236, 240, 241, .1); margin-top: 28px; padding-top: 13px; padding-bottom: 13px; } footer .column-footer-2 a{font-size: 13px; margin-right: 13px; } } @media (max-width: 950px){.row_5{padding: 0 13vw; } } @media (max-width: 900px){.modal-content {width: 65%; left: 17.5%; } .parallax{min-height: 650px; } .sec_2 h1{line-height: 40px; } .sec_2 p{margin: 0 7vw; margin-top: 13px; } .one_4{padding-left: 12vw; } .card_2_5{padding-top: 95px; } } @media (max-width: 850px){.ph li{margin-right: 20px; } .btnn{left: 10px; } .two_4 img{width: 35vw; height: 45vw; } .row_5{padding: 0 10vw; } .image_padding{padding: 0 9vw; } .card_one_padding{padding: 0 2vw; } .card_two_padding{padding: 0 1vw; } .panel{display: none; } .accordion-mobile{display: block; margin-top: 35px; } footer {margin-top: 0; } } @media (max-width: 800px){.modal-content {width: 75%; left: 13%; } .slogan{top: 15vw; } .parallax {background-image: url("image/error_0.jpg"); } .column_5{width: 100%; } .row_5{margin-top: 30px; padding: 0 6vw; } .col_2_5{margin-top: 20px; } .card_2_5{margin-bottom: 110px; } .get_btn{margin-top: 30px; } .row_6 {padding: 0 2vw; } } @media (max-width: 750px) {.modal-content {width: 94%; left: 3%; } } @media (max-width: 790px){.one_4{padding-left: 7vw; } .two_4 img{width: 38vw; height: 50vw; } } @media (max-width: 767px){.ph li span{display: none; } .ph li{margin-right: 25px; margin-top: 23px; } .navbar-brand-centered img{top: 8px; } .btnn{top: 10px; } } @media (max-width: 750px){.btnn{top: 10px; } .btnn span{color: #424949; line-height: 43px; margin-left: -1px; } body:not(.btnn) .btnn {background-color: rgba(255, 255, 255 ,.5)!important; -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); } } @media (max-width: 730px) {.slogan{left: 5vw; top: 13vw; } } @media (max-width: 720px){footer .fab{font-size: 30px; } footer .row-footer-2{margin-top: 10px; padding-top: 20px; } footer .column-footer p, footer .column-footer-2 p {margin-top: 10px; margin-bottom: 15px; } footer .column-footer-2 p {margin-top: 0px; } .in-touch, .about-f {width: 0%; } .column-footer, .column-footer-2 {width: 100%; } footer .in-touch h4{float: none; } footer .column-footer-2 a{float: none; display: block; margin-right: 0; line-height: 30px; } } @media (max-width: 700px){
+  .column_3{width: 100%; } .sec_3 h1{font-size: 26px; } .column_3 h4{font-size: 24px; } .column_3 p{font-size: 16px; } .two_4 img{width: 42vw; height: 55vw; } .one_4{padding-left: 5vw; } .row_5{padding: 0 3vw; } .column_6{width: 100%; } .down-down a{font-size: 15px; } .down-down p{font-size: 16px; } .rise a{line-height: 70px; } } @media (max-width: 649px){.swiper-container .swiper-button-next, .swiper-container .swiper-button-prev{display: block; } .row_5{padding: 0 3vw; } .image_padding{padding: 0 33vw; } .card_one_padding{padding: 0 18vw; } .card_two_padding{padding: 0 16vw; } } @media (max-width: 630px){.slogan{top: 20vw; } .one_4{width: 100%; margin-top: -10vw; } .one_4 p{padding-right: 30vw; } .two_4{display: none; } } @media (max-width: 600px) {.slogan{display: none; } .parallax {background-image: url("image/error_1.jpg"); margin: 0; min-height: 550px; } .rise h1 {line-height: 70px; } } @media (max-width: 550px){.row_5{padding: 0 3vw; } .image_padding{padding: 0 26vw; } .card_one_padding{padding: 0 12vw; } .card_two_padding{padding: 0 10vw; } } @media (max-width: 500px){.parallax {background-image: url("image/error_2.jpg"); background-position: left; } .one_4 p{padding-right: 10vw; } .two_4{display: block; } .two_4 img{width: 300px; height: 350px; position: absolute; left: 25%; } .sec_5{margin-top: 400px; } .image_padding{padding: 0 23vw; } } @media (max-width: 450px){.sec_2 p{margin: 0 3vw; } .modal-content p{padding: 10px 10px; } footer {padding: 0 25px; padding-top: 20px; } } @media (max-width: 430px){
+  .column-cart img{width: 75px; } .column-cart h3{font-size: 20px; } .column-cart span{font-size: 15px; } .column-cart .fas{padding: 30px 15px; } } @media (max-width: 425px){.sec_2 p{margin: 0; margin-right: 3vw; margin-top: 13px; } .sec_2{text-align: left; padding-left: 3vw; } .two_4 img{left: 20%; } } @media (max-width: 400px){.two_4 img{left: 10%; } .one_4{padding-left: 3vw; } .one_4 p{padding-right: 5vw; } .row_5{padding: 0 1vw; } .swiper-container .swiper-button-next, .swiper-container .swiper-button-prev {display: none; } .image_padding{padding: 0 26vw; } .card_one_padding{padding: 0 6vw; } .card_two_padding{padding: 0 4vw; } .modal-content{padding: 0; } .column-cart{padding: 5px 5px; } .column-cart img{width: 65px; } .column-cart h3{font-size: 18px; } .column-cart span{font-size: 14px; } .column-cart .fas{padding: 20px 10px; } } @media (max-width: 379px){.modal-body {padding: 10px 8px; } .row_5{padding: 0 3vw; } .image_padding{padding: 0 22vw; } .card_one_padding{padding: 0 4vw; } .card_two_padding{padding: 0 2vw; } } @media (max-width: 350px){.two_4 img{left: 5%; } .one_4 h1{font-size: 45px; } .col_2_5{margin-top: 10px; } .image_padding{padding: 0 16vw; } .card_one_padding{padding: 0 2vw; } .card_two_padding{padding: 0 0vw; } .down-down p{font-size: 14px; } } @media (max-width: 335px){
+  .one_4 p{padding-right: 3vw; } .ph li{margin-right: 20px; } .btnn{left: 5px; } footer {padding: 0 20px; padding-top: 20px; } } </style> </head>
+<body> <!-----------------modal--------------------------> <!--modal wrapper--> <div id="my-modal" class="modal"> <!---modal contents--> <div class="modal-content"> <!--modal header--> <div class="modal-header"> <div class="close">&times;</div> <h2 class="modal-title"><i class="fas fa-shopping-cart"></i><span></span> &nbsp;&nbsp;My Cart</h2> </div> <div class="line"></div> <!--modal body--> <div class="modal-body"> <div class="products"><!--see js file, dispyCart() in line 208 - 216--></div> <!--div for empty modal--> <div class="empty-modal"> <h3>Your cart is empty. <i class="far fa-sad-tear"></i></h3> <h4>www.wiballstore.com</h4> </div> </div> <div class="line"></div> <!--modal footer--> <div class="modal-footer"> <div class="total"><!--see js file, displayCart() in line 223--></div> <a href="#" class="btn">Check Out</a> </div> <!--lower modal footer--> <div class="lower-footer"> <p style="text-align: center;">By availing our services you agreed with Privacy Policy <a href="#"  style="text-decoration: underline; color: #2E86C1;">Learn more</a></p> </div> </div> </div> <!---------------navbars---------------> <!--navbar_1 (desktop)-->
+<nav class="nav_one" id="navbar" style="border: none;"> <i class="fas fa-barcode"></i> <!--logo brand in the middle--> <div class="navbar-brand navbar-brand-centered"><img src="image/logss.png"></div> <ul class="ph"> <!--something to right--> <li class="num-item-cart" type="button" id="modal-btn"> <i class="fas fa-shopping-cart"></i><p></p><span> &nbsp;My Cart</span></li> </ul> <!--buttons on the bottom of logo brand--> <div class="downbar"> <ul> <li><a href="#" style="color: blue;">Home</a></li> <li><a href="#">Service</a></li> <li><a href="#">Developers</a></li> <li><a href="#">Store</a></li> <li><a href="#">Contact</a></li> </ul> </div> </nav> <!--end of navbar_1--> <!---------------------------------------------->
+<!--side overlay, does enable user to close sidenav whenever clicked outside the sidenav, show when sidebar menu clicked--> <div id="overlay-side" onclick="close_nav()"></div> <!--navbar_2 (mobile)--> <nav class="nav_two" id="navbar_1" style="background-color: #ffffff; border: none;"> <!--hamburger menu--> <div class="btnn"> <span class="fas fa-bars"></span> </div> <!--side nav bar--> <div class="sidebar"> <div class="text">wb - Menu</div> <ul> <li class="active"><a href="#">Home</a></li> <li><a href="#">Service</a></li> <li><a href="#">Developers</a></li> <li><a href="#">Store</a></li> <li><a href="#">Contact</a></li> </ul> </div> <!--logo brand in the middle--> <div class="navbar-brand navbar-brand-centered"><img src="image/logss.png"></div> <ul class="ph"> <!--something to right--> <li class="num-item-cart_2" type="button" id="modal-btn-2"> <i class="fas fa-shopping-cart"></i><p></p><span> &nbsp;My Cart</span></li> </ul> </nav> <!--end od navbar_2--> <!----------------sec_1-------------------> <!--cover image-->
+<div class="parallax"></div> 
+<div class="slogan"><h1>get<br>PRO</h1><a href="#" style="text-decoration: none;">Inquire Now</a></div> 
+<!----------------sec_2-------------------> <!--paragraph--> <div class="sec_2"> <h1>YOUR BUSINESS,<br>OUR GAME</h1> <p>Want to level up your business? Don't worry we got your back! Wiball Developer's is here to help you. We will make your business more professional, We design logo for your brand, and make a website that can bring your customer's closer to you. Level up your game now and crossover to your competitor's.</p> <a href="#" style="text-decoration: none;">Explore more</a> </div> <!-----------------sec_3------------------> <!--feautured offers--> <div class="sec_3"> <h1>Feautured Offers</h1> </div> <!--2 column image--> <div class="row_3"> <!--column1---> <div class="column_3 feature_1"> <!--this is where item_follow  and item_down is used--> <div class="contain contain-1" onmouseover="item_follow(1)" onmouseleave="item_down(1)"> <a href="#"><img src="image/com.jpg" style="width:100%; height: auto;"></a> <a class="NO-item-1" href="#" style="text-decoration: none; color: #ffffff;">100+ Items</a> </div> <h4>Website Templates</h4> <p style="color: red;"><i class="fas fa-shopping-bag"></i> &nbsp;wiball<span style="color: blue;">store</span></p> </div> <!--column2--> <div class="column_3 feature_2"> <div class="contain contain-2" onmouseover="item_follow(2)" onmouseleave="item_down(2)"> <a href="#"><img src="image/com.jpg" style="width:100%; height: auto;"></a> <a class="NO-item-2" href="#" style="text-decoration: none; color: #ffffff;">100+ Items</a> </div> <h4>Logo Brand</h4> <p style="color: red;"><i class="fas fa-shopping-bag"></i> &nbsp;wiball<span style="color: blue;">store</span></p> </div> </div> <!----------------sec_4----------------------> <!--this is a two column section--> <div class="row_4"> <div class="column_4 one_4"> <h1>CROSSOVER</h1> <h2>get PRO</h2> <p>Start making your business shine,<br>check out our templates and logos that fits your brand.</p> <a href="#" style="text-decoration: none;">Go to Store ></a> </div> <div class="column_4 two_4"> <img src="image/lods.png"></div> </div> <!----------------sec_5-----------------------> <div class="sec_5"><h1>Great Deals</h1></div> <!--start of swiper.js mark-up--> <div class="row_5"> <div class="column_5"> <div class="swiper-container"> <div class="swiper-wrapper"> <!-- Slides --> <div class="swiper-slide"><!--slide_1--> <div class="card_5"> <div class="image_padding"> <img src="image/g.png" style="width: 100%;"> </div> <div class="margin_cont"> <div class="card_one_padding"> <!--card_1 is card that is color white background--> <div class="card_cont_5 card_1_5"> <h3 class="type">LOGO<span style="color: red; float: right;"><i class="fas fa-shopping-bag"></i>&nbsp;wiball<span style="color: blue;">store</span></span></h3> <h1>Golden State</h1> <p>UI Designer's rating - <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></p> <div class="line_5"></div> <p class="price">₱ <del>350.00</del> 300.00<span style="float: right;">Crafted with <i class="fas fa-heart" style="color: pink;"></i></span></p> </div> </div> <!--card_2 is card that has blue gradient background--> <div class="card_two_padding"> <div class="card_cont_5 card_2_5"> <p>Amazing logos only here @wiballstore.</p> <div class="get_btn"> <a onclick="get_clicked(0, 'Golden State')" style="text-decoration: none;">Add to Cart</a> </div> </div> </div> </div> </div> </div><!--end of slide one--> <div class="swiper-slide"><!--slide_2--> <div class="card_5"> <div class="image_padding"> <img src="image/gg.png" style="width: 100%;"> </div> <div class="margin_cont"> <div class="card_one_padding"> <div class="card_cont_5 card_1_5"> <h3 class="type">LOGO<span style="color: red; float: right;"><i class="fas fa-shopping-bag"></i>&nbsp;wiball<span style="color: blue;">store</span></span></h3> <h1>Chicago Bulls</h1> <p>UI Designer's rating - <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></p> <div class="line_5"></div> <p class="price">₱ <del>350.00</del> 300.00<span style="float: right;">Crafted with <i class="fas fa-heart" style="color: pink;"></i></span></p> </div> </div> <div class="card_two_padding"> <div class="card_cont_5 card_2_5"> <p>Amazing logos only here @wiballstore.</p> <div class="get_btn"> <a onclick="get_clicked(1, 'Chicago Bulls')" style="text-decoration: none;">Add to Cart</a> </div> </div> </div> </div> </div> </div><!--end of slide2--> <!--start of slide3--> <div class="swiper-slide"><!--slide_3--> <div class="card_5"> <div class="image_padding"> <img src="image/ggg.png" style="width: 100%;"> </div> <div class="margin_cont"> <div class="card_one_padding"> <div class="card_cont_5 card_1_5"> <h3 class="type">LOGO<span style="color: red; float: right;"><i class="fas fa-shopping-bag"></i>&nbsp;wiball<span style="color: blue;">store</span></span></h3> <h1>Boston Celtics</h1> <p>UI Designer's rating - <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></p> <div class="line_5"></div> <p class="price">₱ <del>350.00</del> 300.00<span style="float: right;">Crafted with <i class="fas fa-heart" style="color: pink;"></i></span></p> </div> </div> <div class="card_two_padding"> <div class="card_cont_5 card_2_5"> <p>Amazing logos only here @wiballstore.</p> <div class="get_btn"> <a onclick="get_clicked(2, 'Boston Celtics')" style="text-decoration: none;">Add to Cart</a> </div> </div> </div> </div> </div> </div> </div><!--end of slide3--> <!--swiper.js controls--> <div class="swiper-pagination"></div> <div class="swiper-button-next"></div> <div class="swiper-button-prev"></div> </div> </div> </div> <!-----------------sec_6-------------------->
+<!--this is the 2 column card image--> <div class="row_6"> <!--card image 1--> <div class="column_6 one_6"> <img src="image/i.jpg" style="width: 100%;"> <div class="down-down"> <a style="text-decoration: none; color: #000000;">Add to cart</a> <p style="color: #000000; font-weight: bold;">Responsive Card UI<span style="float: right; font-weight: normal;">₱ <del>350.00</del> 300.00</span></p> <p>Made with <i class="fas fa-heart" style="color: pink;"></i><span style="float: right;"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></span></p> </div> </div> <!--card image2--> <div class="column_6 two_6"> <img src="image/i.jpg" style="width: 100%;"> <div class="down-down"> <a style="text-decoration: none; color: #000000;">Add to cart</a> <p style="color: #000000; font-weight: bold;">Barbiere Template<span style="float: right; font-weight: normal;">₱ <del>350.00</del> 300.00</span></p> <p>Made with <i class="fas fa-heart" style="color: pink;"></i><span style="float: right;"><i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></span></p> </div> </div> </div> <!------------------------sec_7-------------------> <!-- the get ready to rise text--> <div class="rise"> <h1>GET READY TO RISE.</h1> <a href="#" style=" text-decoration: none; color: #ffffff;">Inquire Now</a> </div> <!----------------------sec_8----------------------> <!--the 4 column list--> <div class="panel" style="margin-bottom: 4vw; box-shadow: none;"> <div class="cover_8"> <div class="panel-heading"> <div class="row_8 panel-title"> <!--column-1--> <div class="column_8 zero_8"> <p>Logos</p> <br> <a href="#" style="text-decoration: none;">All Logos</a> <a href="#" style="text-decoration: none;">Abstract Design</a> <a href="#" style="text-decoration: none;">Letters Concept</a> <a href="#" style="text-decoration: none;">Animal Inspired</a> <a href="#" style="text-decoration: none;">Realty Logos</a> </div> <!--column-2--> <div class="column_8 one_8"> <p>Templates</p> <br> <a href="#" style="text-decoration: none;">All Templates</a> <a href="#" style="text-decoration: none;">Barbiere De Gianie</a> <a href="#" style="text-decoration: none;">Bean Leaf Caffe'</a> <a href="#" style="text-decoration: none;">Tup Cavite</a> <a href="#" style="text-decoration: none;">BL Realty</a> </div> <!--column-3--> <div class="column_8 two_8"> <p>User Interface</p> <br> <a href="#" style="text-decoration: none;">All User Interface</a> <a href="#" style="text-decoration: none;">Awesome Cards</a> <a href="#" style="text-decoration: none;">Responsive Headers</a> <a href="#" style="text-decoration: none;">Formal Footers</a> <a href="#" style="text-decoration: none;">Slider Cards</a> </div> <!--column-4--> <div class="column_8 three_8"> <p>E-Books</p> <br> <a href="#" style="text-decoration: none;">Programming</a> <a href="#" style="text-decoration: none;">User Interface</a> <a href="#" style="text-decoration: none;">Creative Logo</a> </div> </div> </div> </div> </div> <!------------------------accordion-mobile--------------------------> <div class="accordion-mobile"> <!--accordion-1--> <button class="accordion">Logos</button> <div class="panel_acc"> <a href="#" style="text-decoration: none;">All Logos</a> <a href="#" style="text-decoration: none;">Abstract Design</a> <a href="#" style="text-decoration: none;">Letters Concept</a> <a href="#" style="text-decoration: none;">Animal Inspired</a> <a href="#" style="text-decoration: none;">Realty Logos</a> </div> <!--accordion-2--> <button class="accordion">Templates</button> <div class="panel_acc"> <a href="#" style="text-decoration: none;">All Templates</a> <a href="#" style="text-decoration: none;">Barbiere De Gianie</a> <a href="#" style="text-decoration: none;">Bean Leaf Caffe'</a> <a href="#" style="text-decoration: none;">Tup Cavite</a> <a href="#" style="text-decoration: none;">BL Realty</a> </div> <!--accordion-3--> <button class="accordion">User Interface</button> <div class="panel_acc"> <a href="#" style="text-decoration: none;">All User Interface</a> <a href="#" style="text-decoration: none;">Awesome Cards</a> <a href="#" style="text-decoration: none;">Responsive Headers</a> <a href="#" style="text-decoration: none;">Formal Footers</a> <a href="#" style="text-decoration: none;">Slider Cards</a> </div> <!--accordion-4--> <button class="accordion">E-Books</button> <div class="panel_acc"> <a href="#" style="text-decoration: none;">Progamming</a> <a href="#" style="text-decoration: none;">User Interface</a> <a href="#" style="text-decoration: none;">Creative Logo</a> </div> </div> <!---------------------footer--------------------->
+<!--2x2 column footer--> <footer> <div class="row-footer"> <!--1st footer content left--> <div class="column-footer about-f"> <h3><span style="color: red;">|</span><span style="color: blue;">|</span> About wiballstore</h3> <p>Wiball Store is built by web developer students who create beautiful logos and Website templates for your business. We offer free responsive UIs for faster web developing and for learning purposes, Selling E-books for programming and other interest is our side job.</p> </div> <!--1st footer content right--> <div class="column-footer in-touch"> <h4><a href="#"><i class="fab fa-facebook"></i></a> <a href="#"><i class="fab fa-google-plus"></i></a> <a href="#"><i class="fab fa-facebook-messenger"></i></a></h4> </div> </div> <div class="row-footer-2"> <!--2st footer content left--> <div class="column-footer-2"> <p style="color: grey;">© 2020 Wiball Store, All Rights Reserved</p> </div> <!--2st footer content right--> <div class="column-footer-2"> <a href="#">Disclaimer</a> <a href="#">Terms and Conditions</a> <a href="#">Privacy Policy</a> </div> </div> </footer> <!--link to .js file--> <script type="text/javascript">
+window.onscroll = function() {fixedNav()};
+
+var navbar = document.getElementById("navbar");
+var navbar1 = document.getElementById("navbar_1");
+var sticky = navbar.offsetTop;
+
+function fixedNav() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+    navbar1.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+    navbar1.classList.remove("sticky");
+  }
+}
+
+let products = [
+  {name: 'Golden State', tag: 'g', price: 15, inCart: 0},
+  {name: 'Chicago Bulls', tag: 'gg', price: 150, inCart: 0},
+  {name: 'Boston Celtics', tag: 'ggg', price: 1500, inCart: 0}
+];
+
+
+let num_reload = [];
+let nr = JSON.parse(localStorage.getItem('nr'));
+if (nr != null) {
+ for (var x = 0; x < nr.length; x++){
+    num_reload[x] = nr[x];
+  }
+}
+function get_clicked(index, name) {
+  document.querySelector(".modal-footer .btn").style.display = 'block';
+  document.querySelector(".total").style.display = 'block';
+  let nr = JSON.parse(localStorage.getItem('nr'));
+  if (nr == null) {
+    num_reload.push(index);
+    localStorage.setItem('nr', JSON.stringify(num_reload));
+  }
+  if (nr != null) {
+    var find = JSON.parse(localStorage.getItem('p' + index));
+    if (find != null) {
+      return;
+    }else{
+      nr.push(index);
+      localStorage.setItem('nr', JSON.stringify(nr));
+    }
+  }
+  cartNumbers(products[index], index);
+  totalCost(products[index]);
+  displayCart(index);
+
+
+  document.querySelector('.empty-modal').style.display = 'none';
+  document.querySelector('.modal-footer').style.display = 'block';
+  $('.lower-footer').css('margin-top', "0");
+}
+
+function onload() {
+
+  let productNumbers = localStorage.getItem('cartNumbers');
+
+  if(productNumbers == null){
+    document.querySelector('.modal-header span').textContent = 0;
+    document.querySelector('.num-item-cart p').textContent = 0;
+    document.querySelector('.num-item-cart_2 p').textContent = 0;
+    document.querySelector('.empty-modal').style.display = 'block';
+    document.querySelector('.modal-footer').style.display = 'none';
+    $('.lower-footer').css('margin-top', "40px");
+  } else {
+    document.querySelector('.modal-header span').textContent = productNumbers;
+    document.querySelector('.num-item-cart p').textContent = productNumbers;
+    document.querySelector('.num-item-cart_2 p').textContent = productNumbers;
+    document.querySelector('.empty-modal').style.display = 'none';
+    document.querySelector(".modal-footer .btn").style.display = 'block';
+    document.querySelector('.modal-footer').style.display = 'block';
+    $('.lower-footer').css('margin-top', "0");
+  }
+  
+  if (productNumbers == 0) {ezero();}
+}
+
+function cartNumbers(product, index) {
+
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+
+  if(productNumbers) {
+    localStorage.setItem('cartNumbers', productNumbers + 1);
+    document.querySelector('.modal-header span').textContent = productNumbers + 1;
+    document.querySelector('.num-item-cart p').textContent = productNumbers + 1;
+    document.querySelector('.num-item-cart_2 p').textContent = productNumbers + 1;
+  }else{
+    localStorage.setItem('cartNumbers', 1); 
+    document.querySelector('.modal-header span').textContent = 1;
+    document.querySelector('.num-item-cart p').textContent = 1;
+    document.querySelector('.num-item-cart_2 p').textContent = 1;
+  }
+
+  setItems(product, index);
+}
+
+
+function setItems(product, index){
+  let cartItems = localStorage.getItem('p' + index);
+  cartItems = JSON.parse(cartItems);
+  if (cartItems != null) {
+
+    if(cartItems[product.tag] == undefined){
+      cartItems = {
+        ...cartItems,
+        [product.tag]: product
+      }
+    }
+    cartItems[product.tag].inCart += 1;
+  }else{
+    product.inCart = 1;
+    cartItems = {[product.tag]: product}
+  }
+  localStorage.setItem("p" + index, JSON.stringify(cartItems));
+}
+
+function totalCost(product){
+  let cartCost = localStorage.getItem('totalCost');
+  if(cartCost != null){
+    cartCost = parseInt(cartCost);
+    localStorage.setItem('totalCost', cartCost + product.price);
+  }else{
+    localStorage.setItem("totalCost", product.price);
+  }
+}
+
+
+function displayCart(index){
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+  if (productNumbers == 0) {
+    document.querySelector('.empty-modal').style.display = 'block';
+  }
+  if (index == null){
+    let nr = JSON.parse(localStorage.getItem('nr'));
+    if (nr != null) {
+      for (var x = 0; x < nr.length; x++){
+        displayCart(nr[x]); 
+      }
+      return;
+    }
+  }
+  let cartItems = localStorage.getItem("p" + index);
+  cartItems = JSON.parse(cartItems);
+
+  let productContainer = document.querySelector(".products");
+  let totaltext = document.querySelector(".total");
+  let cartCost = localStorage.getItem('totalCost');
+  cartCost = parseInt(cartCost);
+
+  style_cart();
+  if (cartItems) {
+    Object.values(cartItems).map(item => {
+
+      productContainer.innerHTML += 
+      ` <div class="products">
+          <div class="row-cart ${item.name}">
+              <div class="column-cart">
+                <img src="image/${item.tag}.png">
+                <h3>${item.name}<br><span style="margin-top: -20px;">₱${item.price}.00</span></h3>
+                <i class="fas ${item.tag} fa-times"></i>  
+              </div>
+          </div>
+        </div>`
+    });
+
+
+    totaltext.innerHTML = '';
+    totaltext.innerHTML +=
+    `<h4><span style="color: grey;" class="text-info">Total:</span> ₱${cartCost}.<span class="small">00</span></h4>`
+  }
+
+  $('.g').click(function(){
+    nr = JSON.parse(localStorage.getItem('nr'));
+    var index = nr.indexOf(0);
+    nr.splice(index, 1);
+    localStorage.setItem('nr', JSON.stringify(nr));
+    localStorage.removeItem('p0');
+    localStorage.setItem('cartNumbers', productNumbers = productNumbers - 1);
+    localStorage.setItem('totalCost', cartCost = cartCost - 15);
+    $('.Golden').remove();
+    style_cart();
+    dcchange();
+    CC();
+    if (productNumbers == 0) {ezero();}
+  });
+
+  $('.gg').click(function(){
+    nr = JSON.parse(localStorage.getItem('nr'));
+    var index = nr.indexOf(1);
+    nr.splice(index, 1);
+    localStorage.setItem('nr', JSON.stringify(nr));
+    localStorage.removeItem('p1');
+    localStorage.setItem('cartNumbers', productNumbers = productNumbers - 1);
+    localStorage.setItem('totalCost', cartCost = cartCost - 150);
+    $('.Chicago').remove();
+    style_cart();
+    dcchange();
+    CC();
+    if (productNumbers == 0) {ezero();}
+  });
+
+  $('.ggg').click(function(){
+    nr = JSON.parse(localStorage.getItem('nr'));
+    var index = nr.indexOf(2);
+    nr.splice(index, 1);
+    localStorage.setItem('nr', JSON.stringify(nr));
+    localStorage.removeItem('p2');
+    localStorage.setItem('cartNumbers', productNumbers = productNumbers - 1);
+    localStorage.setItem('totalCost', cartCost = cartCost - 1500);
+    $('.Boston').remove();
+    style_cart();
+    dcchange();
+    CC();
+    if (productNumbers == 0) {ezero();}
+  });
+
+}
+
+function ezero(){
+  document.querySelector('.modal-footer').style.display = 'none';
+  document.querySelector('.empty-modal').style.display = 'block';
+  document.querySelector(".modal-footer .btn").style.display = 'none';
+  document.querySelector(".total").style.display = 'none';
+  $('.lower-footer').css('margin-top', "40px");
+}
+
+function dcchange(){
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+  localStorage.setItem('cartNumbers', productNumbers);
+  document.querySelector('.modal-header span').textContent = productNumbers;
+  document.querySelector('.num-item-cart p').textContent = productNumbers;
+  document.querySelector('.num-item-cart_2 p').textContent = productNumbers;
+}
+
+function CC(){
+  let totaltext = document.querySelector(".total");
+  let cartCost = localStorage.getItem('totalCost');
+  cartCost = parseInt(cartCost);
+  totaltext.innerHTML = '';
+  totaltext.innerHTML +=
+  `<h4><span style="color: grey;" class="text-info">Total:</span> ₱${cartCost}.<span class="small">00</span></h4>`
+}
+
+function style_cart(){
+  let productNumbers = localStorage.getItem('cartNumbers');
+  productNumbers = parseInt(productNumbers);
+  if (productNumbers == 1) {
+    document.querySelector(".ph li p").style.padding = ".01vw .6vw";
+    document.querySelector('.num-item-cart_2 p').style.padding = ".1px 7px";
+    document.querySelector(".modal-header span").style.padding = "1px 8px ";
+  }else{
+    document.querySelector(".ph li p").style.padding = ".01vw .4vw";
+    document.querySelector('.num-item-cart_2 p').style.padding = "1px 6px";
+    document.querySelector(".modal-header span").style.padding = "1px 6px ";
+  }
+}
+
+onload();
+displayCart();
+
+
+const modal = document.querySelector('#my-modal');
+const modalBtn = document.querySelector('#modal-btn');
+const modalBtn_2 = document.querySelector('#modal-btn-2');
+const closeBtn = document.querySelector('.close');
+
+
+modalBtn_2.addEventListener('click', openModal);
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+function openModal() {
+  modal.style.display = 'block';
+}
+
+
+function closeModal() {
+  modal.style.display = 'none';
+}
+
+function outsideClick(e) {
+  if (e.target == modal) {
+    modal.style.display = 'none';
+  }
+}
+
+var ov_side = document.getElementById("overlay-side");
+
+function close_nav() {
+  $('.btnn').toggleClass("click");
+  $('.sidebar').toggleClass("show");
+  document.getElementById("overlay-side").style.display = "none";
+}
+$('.btnn').click(function(){
+  $(this).toggleClass("click");
+  $('.sidebar').toggleClass("show");
+  if (ov_side.style.display == "block") {
+    ov_side.style.display = "none";
+  }else{
+    ov_side.style.display = "block";
+  }
+}); 
+
+
+$('.sidebar ul li').click(function(){
+  $(this).addClass("active").siblings().removeClass("active");
+});
+
+function item_follow(n){
+  if (n == 1) {
+    $('.NO-item-1').css('margin-top', "-10px");
+    $('.contain-1 img').css('margin-top', "-1vw");
+    $('.contain-1 img').css('box-shadow', "1px 12px 20px rgba(0, 0, 0, 0.1)");
+  }else{
+    $('.NO-item-2').css('margin-top', "-10px");
+    $('.contain-2 img').css('margin-top', "-1vw");
+    $('.contain-2 img').css('box-shadow', "1px 12px 20px rgba(0, 0, 0, 0.1)");
+  }
+}
+function item_down(n){
+  if (n == 1) {
+    $('.NO-item-1').css('margin-top', "0px");
+    $('.contain-1 img').css('margin-top', "0vw");
+    $('.contain-1 img').css('box-shadow', "none");
+  }else{
+    $('.NO-item-2').css('margin-top', "0px");
+    $('.contain-2 img').css('margin-top', "0vw");
+    $('.contain-2 img').css('box-shadow', "none");
+  }
+}
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("activated");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+
+
+var mySwiper = new Swiper('.swiper-container', {
+  speed: 1000,
+  slidesPerView: 3,
+  autoplay: {
+    delay: 4500,
+    disableOnInteraction: true,
+  },
+  direction: 'horizontal',
+  loop: true,
+
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  scrollbar: { 
+    el: '.swiper-scrollbar',
+  },
+
+  breakpoints: {
+
+    299: {
+      slidesPerView: 1,
+      spaceBetween: 50,
+    },
+
+    650: {
+      slidesPerView: 2,
+      spaceBetween: 0,
+    },
+    1001: {
+      slidesPerView: 3,
+      spaceBetween: 10,
+    },
+  }
+});
+
+</script>
+</body> 
+</html> 
